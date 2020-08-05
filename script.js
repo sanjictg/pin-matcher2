@@ -32,22 +32,24 @@ document.getElementById('display').value = inputDisplay.substr(0, inputDisplay.l
 
 
 //Pin Matcher
-const submitBtn=document.getElementById('submit').addEventListener('click',function(){
-generateValue=document.getElementById('random-number').value;
-inputValue=document.getElementById('display').value;
-if(generateValue==inputValue){
-document.getElementById('right').style.display='block';
+function result() {
+    let Verify = document.getElementById('randomValue').value
+    let submit = document.getElementById('CalDisplay').value
+
+    if (Verify == submit) {
+        document.getElementById('Match').style.display = "block";
+        document.getElementById('NotMatch').style.display = "none";
+    } else {
+        document.getElementById('Match').style.display = "none";
+        document.getElementById('NotMatch').style.display = "block";
+    }
+    negative = document.getElementById('negative').innerText--;
+    totalMaine = parseInt(negative);
+    document.getElementById('negative').value = totalMaine;
+    if (totalMaine == !0) {
+        document.getElementById('NotMatch').style.display = "none";
+        document.getElementById('Match').style.display = "none";
+        document.getElementById('submit').disabled = true;
+        document.getElementById('try').style.display = "block";
+    }
 }
-else{
-document.getElementById ('wrong').style.display='block';
-decreaseBtn=document.getElementById('tryleft').innerHTML;
-decreaseNum=parseInt(decreaseBtn);
-decreaseBtnNew=decreaseNum-1;
-document.getElementById('tryleft').innerHTML=decreaseBtnNew;
-
-}
-
-
-document.getElementById('display').value='';
-
-})
