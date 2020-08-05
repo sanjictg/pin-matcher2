@@ -29,11 +29,9 @@ let backSpace=document.getElementById('backspace').addEventListener('click',func
 const inputDisplay = document.getElementById('display').value;
 document.getElementById('display').value = inputDisplay.substr(0, inputDisplay.length - 1);
 })
-
-
 //Pin Matcher
 function result() {
-    let Verify = document.getElementById('randomValue').value
+    let Verify = document.getElementById('random-number').value
     let submit = document.getElementById('CalDisplay').value
 
     if (Verify == submit) {

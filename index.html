@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="text" id="display">
+                    <input class="form-control" type="text" id="CalDisplay">
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row"> 
@@ -45,16 +45,17 @@
                                 <div class="button" id="clear">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn" id="submit"value="save changes" />Submit</button>
-                                <p class="action-left" id="decrease-try"><span id="tryleft">3</span> try left</p>
+                                <button type="submit" class="submit-btn" id="submit" onclick="result()">Submit</button>
+                                <p class="action-left"><span id="negative">3</span> try left</p>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p class="notify" id="NotMatch">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="Match">✅ Pin Matched... Secret door is opening for you</p>
+            <p class="notify" id="try">⚠️ Please verify again.... Secret door is opening for you</p>
         </div>
     </div>
     <script src="script.js"></script>
