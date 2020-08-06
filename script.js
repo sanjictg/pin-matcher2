@@ -11,11 +11,14 @@ document.getElementById("random-number").value = randomNewAmount;
 });
 
 
-
 //Input Numbers in Display
 let inputDisplay=document.getElementById('display');
 function display(num){
 inputDisplay.value+=num;
+}
+function Number(Num) {
+    document.getElementById('display').value = document.getElementById('display').value + Num
+
 }
 
 
@@ -32,7 +35,7 @@ document.getElementById('display').value = inputDisplay.substr(0, inputDisplay.l
 //Pin Matcher
 function result() {
     let Verify = document.getElementById('random-number').value
-    let submit = document.getElementById('CalDisplay').value
+    let submit = document.getElementById('display').value
 
     if (Verify == submit) {
         document.getElementById('Match').style.display = "block";
