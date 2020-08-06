@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="text" id="display">
+                    <input id="display" class="form-control" type="text" >
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row"> 
@@ -45,19 +45,83 @@
                                 <div class="button" id="clear">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn" id="submit"value="save changes" />Submit</button>
-                                <p class="action-left" id="decrease-try"><span id="tryleft">3</span> try left</p>
+                                <button type="submit" class="submit-btn" id="submit" onclick="result()">Submit</button>
+                                <p class="action-left"><span id="negative">3</span> try left</p>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p class="notify" id="NotMatch">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="Match">✅ Pin Matched... Secret door is opening for you</p>
+            <p class="notify" id="try">⚠️ Please verify again.... Secret door is opening for you</p>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        // hide notify area
+        document.getElementById("NotMatch").style.display = "none";
+        document.getElementById("Match").style.display = "none";
+        document.getElementById("try").style.display= "none";
+
+        //Random Number Generate
+        const generateBtn = document.getElementById("generate-pin");
+        generateBtn.addEventListener("click", function(){
+        const randomNumber = document.getElementById("random-number").value;
+        const randomAmount = parseFloat(randomNumber);
+        let randomNewAmount = Math.floor(Math.random (randomAmount) * 9999)+1000;
+        while (randomNewAmount>9999){
+        randomNewAmount = Math.floor(Math.random (randomAmount) * 9999)+1000;
+        }
+        document.getElementById("random-number").value = randomNewAmount;
+        });
+
+
+//Input Numbers in Display
+let inputDisplay=document.getElementById('display');
+function display(num){
+inputDisplay.value+=num;
+}
+function Number(Num) {
+    document.getElementById('display').value = document.getElementById('display').value + Num
+
+}
+
+
+//ClearButton
+let clearBtn=document.getElementById('clear').addEventListener('click',function(){
+inputDisplay.value='';
+})
+
+//Backspace
+let backSpace=document.getElementById('backspace').addEventListener('click',function(){
+const inputDisplay = document.getElementById('display').value;
+document.getElementById('display').value = inputDisplay.substr(0, inputDisplay.length - 1);
+})
+// //Pin Matcher
+const submitBtn = document.getElementById("submit");
+submitBtn.addEventListener('click',function(){
+const inputArea = document.getElementById("display").value;
+const newInputArea = parseFloat(inputArea);
+const pinNUmber = document.getElementById("random-number").value;
+const newPinNUmber = parseFloat(pinNUmber); 
+const tryLeft = document.getElementById("negative");
+const tryCount = parseFloat(tryLeft.innerText);
+if(newInputArea == newPinNUmber){
+    document.getElementById("Match").style.display = "block";
+    document.getElementById("NotMatch").style.display = "none";
+}
+if(newInputArea != newPinNUmber && tryCount > 0){
+    document.getElementById("NotMatch").style.display = "block";
+    document.getElementById("Match").style.display = "none";
+const tryNewCount = tryCount - 1;
+tryLeft.innerText = tryNewCount;
+document.getElementById('negative').innerText = tryNewCount;
+
+}
+document.getElementById("display").value = "";
+}); 
+    </script>
     
 
 </body>
